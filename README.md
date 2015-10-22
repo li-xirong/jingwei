@@ -30,7 +30,8 @@ RobustPCA     | tag + image   | transduction based | C + Matlab + Python | linux
 
 ## Training and Test Data ##
 
-* [http://www.micc.unifi.it/tagsurvey](http://www.micc.unifi.it/tagsurvey)
+* [A mini-version](http://www.micc.unifi.it/tagsurvey/downloads/mm15-tut.tar.gz) for hands-on experience
+* [Full sets](http://www.micc.unifi.it/tagsurvey)
 
 ## Setup ##
 

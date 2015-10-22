@@ -1,0 +1,11 @@
+--- Tagprop/tagprop_predict.m
++++ TagProp/tagprop_predict.m
+@@ -14,7 +14,7 @@
+     error('Invalid neighbor distance matrix')
+   end
+ end
+-NN=NN-1;  % zero-based indexing
++%NN=NN-1;  % zero-based indexing
+ 
+ if isfield(params,'ab') && model.sigmoids, % model has sigmoids
+     Y = tagpropCmt(params.lambda(:),params.AL,params.NW,AW,NN,ND,params.ab(1,:)',params.ab(2,:)')'; 

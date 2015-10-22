@@ -1,0 +1,11 @@
+{
+ "imagedata_path": "E:/xirong/VisualSearch",
+ "rootpath": "c:/local/mm15-tut/data",
+ "max_hits": 50,
+ "collection": "mirflickr08",
+ "annotationName": "conceptsmir14.txt",
+ "rankMethod": "train10k/conceptsmm15tut.txt/vgg-verydeep-16-fc7relul2,fastlinear",
+ "metric": "AP"
+}
+
+

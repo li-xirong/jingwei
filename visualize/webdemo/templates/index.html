@@ -1,0 +1,76 @@
+$def with (resp)
+
+$def result_to_table(resp, method, row_num=20):
+    <table style="margin:auto; width:50%;" cellspacing="1px" cellpadding="1px">
+    $ reslist = resp[method]
+    $ col_num = 8
+    $ index = 0
+    $for i in range(row_num):
+        <tr>
+        $for j in range(col_num):
+            $ index = i*col_num + j
+            $if index>=len(reslist): 
+                $break
+            $ imageid = reslist[index]['id']
+            $ url = '/images/%s.jpg' % imageid
+            $ color = reslist[index]['color']
+            <td><img src="$url" width=125 height=125 style="border:5px solid $color"></img></td>
+        </tr>
+    </table>
+
+ 
+$def result_to_html(resp):
+    $if 0 == resp['status']:
+        $:result_to_table(resp, 'random')
+    $else:
+        $ perf = ('%.3f' % resp['perf']).rstrip('0').rstrip('.')
+        $ metric = resp['metric']
+        <div style="margin:auto; text-align:left;"> Search for <b>$resp['query']</b>: <font color="blue"><b> $resp['hits']</b></font> hits in our database (<b>$metric: $perf</b>) </div>
+        <table class="fixed" cellspacing="10px">
+            <col width="50%">
+            <col width="50%">
+            <tr style="vertical-align:top;">
+                <td>$:result_to_table(resp, 'tagrel')</td>
+            </tr>
+        </table>
+    
+    
+$def search_form(resp):
+    <form id="search_form"  method="post" action="search">
+    $if 0 == resp['status']:
+        <p><input placeholder="tag or imageid"  type="text" id="input_tags" name="tags" class="focus" /> <input id="go" name="go"  type="submit" value="Go!" /></p>
+    $else:
+        <p><input value="$resp['query']"  type="text" id="input_tags" name="tags" class="focus" /> <input id="go" name="go" type="submit" value="Go!" /></p>
+    </form>
+        
+
+<html>
+<head>
+<link rel="stylesheet" href="/static/basic.css" type="text/css" media="screen" charset="utf-8"/>
+<script type="text/javascript" src="/static/jquery.js"></script>
+
+<script type="text/javascript">
+
+jQuery(document).ready(function(){
+    jQuery('#search_form').submit(function(e){
+        var input = jQuery.trim( jQuery('#input_tags').val() );
+        if (!input) {
+            e.preventDefault();
+        }
+        else {
+            jQuery('#input_tags').val(input)
+        }
+    });
+});
+
+</script>
+    
+</head>
+
+<body>
+
+
+$:search_form(resp)
+$:result_to_html(resp)
+
+</body>

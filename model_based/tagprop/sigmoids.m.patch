@@ -1,0 +1,26 @@
+--- TagProp/sigmoids.m	
++++ Tagprop/sigmoids.m
+@@ -6,7 +6,7 @@
+ 
+ [I W]   = size(Ypred);
+ ab      = zeros(2,W);
+-Labels  = zeros(I, W);
++Labels  = zeros(I, W, 'single');
+ 
+ ii = 0;
+ for i=1:I
+@@ -20,10 +20,11 @@
+ if params.verb, fprintf('--> word %3d',0); end
+ for w=1:W
+     if params.verb, fprintf('\b\b\b%3d',w); end
+-    data    = [Ypred(:,w) ones(I,1)];
+-    labels  = 2*Labels(:,w)-1;
+-    weights = AW(w,:)';
++    data    = double([Ypred(:,w) ones(I,1)]);
++    labels  = double(2*Labels(:,w)-1);
++    weights = double(AW(w,:)');
+        
++    %logsigmoid(ab(:,w), data,labels,weights);
+     ab(:,w) = minimize(ab(:,w), 'logsigmoid',params.iters,params.verb,data,labels,weights);
+ end
+ if params.verb, fprintf('\n'); end

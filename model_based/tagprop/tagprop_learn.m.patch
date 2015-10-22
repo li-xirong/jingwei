@@ -1,0 +1,92 @@
+--- TagProp/tagprop_learn.m	
++++ Tagprop/tagprop_learn.m	
+@@ -37,7 +37,7 @@
+ p=inputParser;
+ %%% Required arguments
+ % The nearest neighbor matrix is 2D and numeric within 1..N
+-p.addRequired('NN', @(X) ndims(X)==2 && isnumeric(X) && min(X(:))>0 && max(X(:))<=size(X,2) && size(X,2)==size(Y,2) && size(X,1)>0);
++p.addRequired('NN', @(X) ndims(X)==2 && isnumeric(X) && min(X(:))>=0 && max(X(:))<size(X,2) && size(X,2)==size(Y,2) && size(X,1)>0);
+ % The neighbor distance matrix is either empty ('rank' case), or 3D and numeric
+ p.addRequired('ND', @(X) isempty(X) || (ndims(X)==3 && isnumeric(X) && size(X,2) == size(NN,1) && size(Y,2) == size(X,3) && size(X,1)>0));
+ % The annotation matrix has as many columns as NN or ND
+@@ -62,7 +62,7 @@
+   options = p.Results.options;
+ end
+ %%% Set NN and ND for the chosen type
+-NN=NN-1; % zero-based indexing for neighbors
++%NN=NN-1; % zero-based indexing for neighbors
+ if strcmp(options.type,'rank')
+     ND=[]; % important to make this empty for the c code.
+ elseif isempty(ND)
+@@ -76,12 +76,12 @@
+ else
+     if options.verb, fprintf('Initializing with default parameters\n'); end
+     % Set data weights
+-    params.NW      = sum(Y,1); % number of labels for each data point
++    params.NW      = full(sum(Y,1)); % number of labels for each data point
+     params.nw      = sum(params.NW);
+     params.I       = numel(params.NW); % number of data points
+     params.W       = size(Y,1);
+     if options.weighted,
+-        AW = Y * (1/params.nw) + (1-Y) / (params.I*params.W-params.nw);
++        AW = full(Y * (1/params.nw) + (1-Y) / (params.I*params.W-params.nw));
+         AW = AW / sum(AW(:)); % normalize weights to unit sum
+     else
+         AW = ones(size(Y));
+@@ -108,13 +108,13 @@
+     params.AL = zeros(params.nw,1);
+     count = 0;
+     for i=1:params.I
+-        tmp  = find(Y(:,i));
++        tmp  = full(find(Y(:,i)));
+         params.AL(count + (1:params.NW(i))) = tmp-1; % zero-based indices for labels
+         count = count + params.NW(i);
+     end
+     %keyboard
+-    if strcmp(options.init,'linear') || ~options.sigmoids,        
+-        if options.verb, fprintf('Learning linear %s model\n',options.type); end                
++    if strcmp(options.init,'linear') || ~options.sigmoids,
++        if options.verb, fprintf('Learning linear %s model\n',options.type); end
+         params.lambda = projGradDescentArmijo(params.lambda, params.function, params.projection, params.projgrad, ...
+                                               params.AL, params.NW, params.AW, NN, ND);
+     end
+@@ -127,12 +127,12 @@
+ %%% If sigmoids, first set the sigmoids parameters
+ if options.sigmoids,
+     % linear prediction from neighbors for train annotations
+-    Y = tagpropCmt(params.lambda,params.AL,params.NW,params.AW,NN,ND)';     
++    Y = tagpropCmt(params.lambda,params.AL,params.NW,params.AW,NN,ND)';
+     % estimate sigmoid parameters under initial weighted predictions
+-    if options.verb, fprintf('\nFitting sigmoids\n'); end                
++    if options.verb, fprintf('\nFitting sigmoids\n'); end
+     params.ab = sigmoids(Y,params.AL,params.NW, params.AW, params.sigmoid);
+     % get initial likelihood value
+-    [loglik(1,1) tmp] = tagpropCmt(params.lambda,params.AL,params.NW,params.AW,NN,ND,params.ab(1,:),params.ab(2,:));     
++    [loglik(1,1) tmp] = tagpropCmt(params.lambda,params.AL,params.NW,params.AW,NN,ND,params.ab(1,:),params.ab(2,:));
+ else
+     % get initial likelihood value
+     [loglik(1,1) tmp] = tagpropCmt(params.lambda,params.AL,params.NW,params.AW,NN,ND);
+@@ -141,15 +141,15 @@
+ %%% Alternate optimization of weights and sigmoids
+ for outer_iter = 1:iters
+     % re-estimate weight parameters under fixed sigmoids
+-    if options.verb, fprintf('Learning %s model\n',options.type); end                
+-    params.lambda = projGradDescentArmijo(params.lambda, params.function,params.projection,params.projgrad,params.AL,params.NW,params.AW,NN,ND,params.ab(1,:),params.ab(2,:));        
+-    Y = tagpropCmt(params.lambda,params.AL,params.NW,params.AW,NN,ND)';         
+-    [loglik(outer_iter,2) tmp] = tagpropCmt(params.lambda,params.AL,params.NW,params.AW,NN,ND,params.ab(1,:),params.ab(2,:));     
+-        
++    if options.verb, fprintf('Learning %s model\n',options.type); end
++    params.lambda = projGradDescentArmijo(params.lambda, params.function,params.projection,params.projgrad,params.AL,params.NW,params.AW,NN,ND,params.ab(1,:),params.ab(2,:));
++    Y = tagpropCmt(params.lambda,params.AL,params.NW,params.AW,NN,ND)';
++    [loglik(outer_iter,2) tmp] = tagpropCmt(params.lambda,params.AL,params.NW,params.AW,NN,ND,params.ab(1,:),params.ab(2,:));
++
+     % re-estimate sigmoid parameters under fixed weighted predictions
+-    if options.verb, fprintf('\nFitting sigmoids\n'); end                
+-    params.ab = sigmoids(Y,params.AL,params.NW, params.AW, params.sigmoid);    
+-    [loglik(outer_iter+1,1) tmp] = tagpropCmt(params.lambda,params.AL,params.NW,params.AW,NN,ND,params.ab(1,:),params.ab(2,:));     
++    if options.verb, fprintf('\nFitting sigmoids\n'); end
++    params.ab = sigmoids(Y,params.AL,params.NW, params.AW, params.sigmoid);
++    [loglik(outer_iter+1,1) tmp] = tagpropCmt(params.lambda,params.AL,params.NW,params.AW,NN,ND,params.ab(1,:),params.ab(2,:));
+ end
+ 
+ %%% Output model/options struct

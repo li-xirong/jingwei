@@ -1,0 +1,4 @@
+/local/xirong/VisualSearch/voc2008val/autotagging/voc2008val/voc2008train/conceptsvoc2008train.txt/dsift,fastlinear
+/local/xirong/VisualSearch/voc2008val/autotagging/voc2008val/voc2008train/conceptsvoc2008train.txt/dsift,fastlinear-tuned
+/local/xirong/VisualSearch/voc2008val/autotagging/voc2008val/voc2008train/conceptsvoc2008train.txt/dsift,fik50
+/local/xirong/VisualSearch/voc2008val/autotagging/voc2008val/voc2008train/conceptsvoc2008train.txt/dsift,fik50-tuned

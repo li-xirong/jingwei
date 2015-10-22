@@ -1,0 +1,11 @@
+{
+ "imagedata_path": "/Users/xirong/mm15tut",
+ "rootpath": "/Users/xirong/mm15tut",
+ "max_hits": 50,
+ "collection": "mirflickr08",
+ "annotationName": "conceptsmir14.txt",
+ "rankMethod": "train100k/conceptsmm15tut.txt/vgg-verydeep-16-fc7relul2,fastlinear",
+ "metric": "AP"
+}
+
+

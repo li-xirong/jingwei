@@ -1,0 +1,4 @@
+/home/urix/shared/surveyruns/imagenet166_flickr81_vgg-verydeep-16-fc7relu_cosine_pretagvote-1000_imagenet.pkl
+/home/urix/shared/surveyruns/imagenet166_flickr81_vgg-verydeep-16-fc7relu_cosine_tagprop-1000_imagenet.pkl
+/home/urix/shared/surveyruns/train100k_flickr81_concepts66imagenet_vgg-verydeep-16-fc7relu_cosine_pretagvote-1000.pkl
+/home/urix/shared/surveyruns/train100k_flickr81_vgg-verydeep-16-fc7relucosine,tagprop_imagenet.pkl

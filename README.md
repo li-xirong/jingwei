@@ -19,7 +19,7 @@ RelExample    | tag + image   | model based   |	C + Python     | linux, windows
 RobustPCA     | tag + image   | transduction based | C + Matlab + Python | linux
 
 
-![Code architecture: A high-level view](code-framework.png = 800x)
+![Code architecture: A high-level view](code-framework.png)
 
 ## Python Dependencies ##
 

@@ -1,6 +1,6 @@
 # Jingwei #
 
-The Jingwei is an open-source testbed for evaluating methods for image tag assignment, tag refinement and tag-based image retrieval. It is developed as part of [our survey effort](http://arxiv.org/abs/1503.08248), aiming to provide a timely reflection of the state-of-the-art in the field.
+Jingwei is an open-source testbed for evaluating methods for image tag assignment, tag refinement and tag-based image retrieval. It is developed as part of [our survey effort](http://arxiv.org/abs/1503.08248), aiming to provide a timely reflection of the state-of-the-art in the field.
 
 
 ## Methods implemented ##
@@ -52,9 +52,6 @@ $ bash setup.sh
 ```
 
 ## Use a specific method ##
-
-* 
-
 
 Scripts in [doit](doit) provide step-by-step usages of each method.
 

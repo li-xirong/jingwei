@@ -59,6 +59,6 @@ The algorithm is implemented as the ```TagVotetagger``` class (or alternatively 
 
 **TagCooccur**: B. Sigurbjornsson, R. van Zwol, [Flickr tag recommendation based on collective knowledge](http://dx.doi.org/10.1145/1367497.1367542), Proceedings of WWW, 2008
 
-**TagRanking***: D. Liu, X.-S. Hua, L. Yang, M. Wang, H.-J. Zhang, [Tag Ranking](http://dx.doi.org/10.1145/1526709.1526757), Proceedings of WWW, 2009
+**TagRanking**: D. Liu, X.-S. Hua, L. Yang, M. Wang, H.-J. Zhang, [Tag Ranking](http://dx.doi.org/10.1145/1526709.1526757), Proceedings of WWW, 2009
 
 **TagVote**, **TagCooccur+**: X. Li, C. Snoek, M. Worring, [Learning social tag relevance by neighbor voting](http://dx.doi.org/10.1109/TMM.2009.2030598), IEEE Transactions on Multimedia, 2009

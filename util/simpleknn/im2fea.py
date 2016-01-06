@@ -1,9 +1,11 @@
 import sys, os, numpy as np
 from optparse import OptionParser
-from basic.common import ROOT_PATH, makedirsforfile, checkToSkip, printStatus
-from simpleknn.bigfile import BigFile
 
-INFO = 'im2fea'
+from basic.constant import ROOT_PATH
+from basic.common import makedirsforfile, checkToSkip, printStatus
+from bigfile import BigFile
+
+INFO = __file__
 
 def process(options, source_dir, feat_dim, imsetfile, result_dir):
 
@@ -14,7 +16,7 @@ def process(options, source_dir, feat_dim, imsetfile, result_dir):
     imset = map(str.strip, open(imsetfile).readlines())
     print "requested", len(imset)
 
-    featurefile = BigFile(source_dir, feat_dim)
+    feat_file = BigFile(source_dir)
     
     makedirsforfile(resultfile)
     fw = open(resultfile, 'wb')
@@ -25,7 +27,7 @@ def process(options, source_dir, feat_dim, imsetfile, result_dir):
     while start < len(imset):
         end = min(len(imset), start + options.blocksize)
         printStatus(INFO, 'processing images from %d to %d' % (start, end-1))
-        renamed, vectors = featurefile.read(imset[start:end])
+        renamed, vectors = feat_file.read(imset[start:end])
         for vec in vectors:
             vec = np.array(vec, dtype=np.float32)
             vec.tofile(fw)
@@ -39,6 +41,10 @@ def process(options, source_dir, feat_dim, imsetfile, result_dir):
     fw.write(' '.join(done))
     fw.close()
 
+    with open(os.path.join(result_dir,'shape.txt'), 'w') as fw:
+        fw.write('%d %d' % (len(done), feat_file.ndims))
+        fw.close()
+
     print '%d requested, %d obtained' % (len(imset), len(done))
 
 
@@ -48,7 +54,7 @@ def main(argv=None):
 
     parser = OptionParser(usage="""usage: %prog [options] source_dir feat_dim imsetfile result_dir""")
     parser.add_option("--overwrite", default=0, type="int", help="overwrite existing file (default=0)")
-    parser.add_option("--blocksize", default=500, type="int", help="nr of feature vectors loaded per time (default: 1000)")
+    parser.add_option("--blocksize", default=1000, type="int", help="nr of feature vectors loaded per time (default: 1000)")
     
 
     (options, args) = parser.parse_args(argv)

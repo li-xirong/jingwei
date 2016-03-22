@@ -58,7 +58,7 @@ Scripts in [doit](doit) provide step-by-step usages of each method.
 
 ## Citation ###
 
-If you publish work that uses Jingwei, please cite our survey paper: Xirong Li, Tiberio Uricchio, Lamberto Ballan, Marco Bertini, Cees G. M. Snoek, Alberto Del Bimbo: Socializing the Semantic Gap: A Comparative Survey on Image Tag Assignment, Refinement and Retrieval. CoRR abs/1503.08248, 2005.
+If you publish work that uses Jingwei, please cite our survey paper: Xirong Li, Tiberio Uricchio, Lamberto Ballan, Marco Bertini, Cees G. M. Snoek, Alberto Del Bimbo: Socializing the Semantic Gap: A Comparative Survey on Image Tag Assignment, Refinement and Retrieval. CoRR abs/1503.08248, 2005 (to appear in ACM Computing Surveys (CSUR)).
 
 ## Contact ##
 

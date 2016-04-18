@@ -1,23 +1,24 @@
 import os, sys, array, shutil
 import numpy as np
-from optparse import OptionParser
 from basic.common import checkToSkip, makedirsforfile
 
-def process(options, feat_dim, inputfile):
+def process(options, feat_dir):
     newname = ''
     if options.ssr:
         newname = 'ssr'
     newname += 'l%d' % options.p
-    resfile = os.path.join(os.path.split(inputfile)[0] + newname, 'feature.bin')
+    resfile = os.path.join(feat_dir.rstrip('/\\') + newname, 'feature.bin')
     if checkToSkip(resfile, options.overwrite):
         return 0
 
+    with open(os.path.join(feat_dir, 'shape.txt')) as fr:
+        nr_of_images, feat_dim = map(int, fr.readline().strip().split())
+        fr.close()
+        
     offset = np.float32(1).nbytes * feat_dim
     res = array.array('f')
     
-    idfile = os.path.join(os.path.split(inputfile)[0], 'id.txt')
-    nr_of_images = len(open(idfile).readline().strip().split())
-    fr = open(inputfile, 'rb')
+    fr = open(os.path.join(feat_dir,'feature.bin'), 'rb')
     makedirsforfile(resfile)
     fw = open(resfile, 'wb')
     print ('>>> writing results to %s' % resfile)
@@ -41,27 +42,33 @@ def process(options, feat_dim, inputfile):
     fr.close()
     fw.close()
     print ('>>> %d lines parsed' % nr_of_images)
-    shutil.copyfile(idfile, os.path.join(os.path.split(resfile)[0], 'id.txt'))
-    shutil.copyfile(os.path.join(os.path.split(inputfile)[0], 'shape.txt'), os.path.join(os.path.split(resfile)[0], 'shape.txt'))
+    shutil.copyfile(os.path.join(feat_dir,'id.txt'), os.path.join(os.path.split(resfile)[0], 'id.txt'))
+    
+    shapefile = os.path.join(os.path.split(resfile)[0], 'shape.txt')
+    with open(shapefile, 'w') as fw:
+        fw.write('%d %d' % (nr_of_images, feat_dim))
+        fw.close()
+
 
 
 def main(argv=None):
     if argv is None:
         argv = sys.argv[1:]
 
-    parser = OptionParser(usage="""usage: %prog [options] feat_dim inputfile""")
+    from optparse import OptionParser
+    parser = OptionParser(usage="""usage: %prog [options] feat_dir""")
     parser.add_option("--overwrite", default=0, type="int", help="overwrite existing file (default=0)")
     parser.add_option("--ssr", default=0, type="int", help="do signed square root per dim (default=0)")
     parser.add_option("--p", default=2, type="int", help="L_p normalization (default p=2)")
     
     
     (options, args) = parser.parse_args(argv)
-    if len(args) < 2:
+    if len(args) < 1:
         parser.print_help()
         return 1
     assert(options.p in [1, 2])
-    return process(options, int(args[0]), args[1])
-
+    return process(options, args[0])
+    
 
 if __name__ == "__main__":
     sys.exit(main())

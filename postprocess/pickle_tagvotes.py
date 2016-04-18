@@ -21,7 +21,7 @@ def process(options, conceptfile, tagvotesfile, resultfile):
     
     for i in xrange(image_num):
         elems = str.split(data[i])
-        id_images[i] = int(elems[0])
+        id_images[i] = elems[0] #int(elems[0])
         del elems[0]
         for k in range(0, len(elems), 2):
             tag = elems[k]

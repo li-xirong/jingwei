@@ -74,6 +74,8 @@ class NDCGScorer (PrecisionScorer):
 
 
     def score(self, sorted_labels):
+        if not sorted_labels:
+            return 0.0
         d = self.getDCG(sorted_labels)
         d2 = self.getIdealDCG(sorted_labels) 
         #print '\n', d, d2

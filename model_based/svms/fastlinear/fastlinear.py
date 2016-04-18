@@ -59,7 +59,8 @@ class fastlinear_model(Structure):
         libfastlinear.fastlinear_set_probAB(self, probA, probB)
 
     def get_w(self):
-        return libfastlinear.fastlinear_get_w(self)
+        feat_dim = libfastlinear.fastlinear_get_feat_dim(self)
+        return [libfastlinear.fastlinear_get_w(self, i) for i in xrange(feat_dim)]
 
 
     def add_rawsvm(self, new_model, w1, w2):
@@ -90,7 +91,7 @@ fillprototype(libfastlinear.fastlinear_load_model, POINTER(fastlinear_model), [c
 fillprototype(libfastlinear.fastlinear_get_probA, c_double, [POINTER(fastlinear_model)])
 fillprototype(libfastlinear.fastlinear_get_probB, c_double, [POINTER(fastlinear_model)])
 fillprototype(libfastlinear.fastlinear_set_probAB, None, [POINTER(fastlinear_model), c_double, c_double])
-fillprototype(libfastlinear.fastlinear_get_w, c_double, [POINTER(fastlinear_model)])
+fillprototype(libfastlinear.fastlinear_get_w, c_double, [POINTER(fastlinear_model), c_int])
 
 
 def liblinear_to_fastlinear(liblinear_models, weights, feat_dim, params=None):

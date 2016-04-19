@@ -123,6 +123,7 @@ def readImageSet(collection, dataset=None, rootpath=ROOT_PATH):
         dataset = collection
     imsetfile = os.path.join(rootpath, collection, 'ImageSets', '%s.txt' % dataset)
     imset = map(str.strip, open(imsetfile).readlines())
+    assert(len(imset[0].split())==1), 'invalid image-id %s' % imset[0]
     return imset
 
 def readLabeledImageSet(collection, tag, tpp='lemm', rootpath=ROOT_PATH):

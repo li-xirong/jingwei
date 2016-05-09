@@ -54,7 +54,8 @@ $ bash setup.sh
 
 ## Use a specific method ##
 
-Scripts in [doit](doit) provide step-by-step usages of each method.
+* Scripts in [doit](doit) provide step-by-step usages of each method. 
+* Tutorials in [samples](samples) show how to leverage the framework for solving varied tasks.
 
 ## Citation ###
 

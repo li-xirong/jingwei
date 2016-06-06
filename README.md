@@ -59,7 +59,7 @@ $ bash setup.sh
 
 ## Citation ###
 
-If you publish work that uses Jingwei, please cite our survey paper: Xirong Li, Tiberio Uricchio, Lamberto Ballan, Marco Bertini, Cees G. M. Snoek, Alberto Del Bimbo: Socializing the Semantic Gap: A Comparative Survey on Image Tag Assignment, Refinement and Retrieval, ACM Computing Surveys (CSUR) 2016 (in press)
+If you publish work that uses Jingwei, please cite our survey paper: Xirong Li, Tiberio Uricchio, Lamberto Ballan, Marco Bertini, Cees G. M. Snoek, Alberto Del Bimbo: Socializing the Semantic Gap: A Comparative Survey on Image Tag Assignment, Refinement and Retrieval, ACM Computing Surveys (CSUR), Volume 49, Issue 1, 14:1-14:39, May 2016
 
 ## Contact ##
 

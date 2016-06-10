@@ -145,7 +145,7 @@ def process(options, workingCollection, annotationName, feature, outputpkl):
 
     makedirsforfile(resultfile)
     with open(resultfile, 'w') as f:
-        pickle.dump({'concepts':concepts, 'id_images':map(int, id_images), 'scores':final_tagmatrix}, f, pickle.HIGHEST_PROTOCOL)
+        pickle.dump({'concepts':concepts, 'id_images': id_images, 'scores':final_tagmatrix}, f, pickle.HIGHEST_PROTOCOL)
 
 
 def main(argv=None):

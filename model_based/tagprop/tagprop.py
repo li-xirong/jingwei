@@ -152,7 +152,7 @@ def process(options, testCollection, trainCollection, annotationName, feature, o
     concepts = readConcepts(testCollection, annotationName, rootpath)
     id_images = readImageSet(testCollection, testset, rootpath)
     id_images.sort()
-    id_images = map(int, id_images)
+    # id_images = map(int, id_images)
 
     # concepts mapping
     tagprop_output = h5py.File(resultfile_tagprop, 'r')

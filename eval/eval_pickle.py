@@ -1,5 +1,6 @@
 import sys, os
 import numpy as np
+import string
 
 import cPickle as pickle
 
@@ -45,7 +46,7 @@ def process(options, collection, annotationName, runfile):
 
         label_file = os.path.join(rootpath, collection, 'tagged,lemm', '%s.txt'% concepts[i])
         try:
-            hit_imgset[i] = set(map(str, open(label_file).readlines())) # set(map(int, open(label_file).readlines()))
+            hit_imgset[i] = set(map(string.strip, map(str, open(label_file).readlines()))) # set(map(int, open(label_file).readlines()))
         except:
             hit_imgset[i] = set()
         printStatus(INFO, 'readLabeledImageSet for %s-%s -> %d hits' % (collection, concepts[i], len(hit_imgset[i])))

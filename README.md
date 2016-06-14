@@ -1,6 +1,6 @@
 # Jingwei #
 
-Jingwei is an open-source testbed for evaluating methods for image tag assignment, tag refinement and tag-based image retrieval. It is developed as part of [our survey effort](http://dl.acm.org/citation.cfm?doid=2906152), aiming to provide a timely reflection of the state-of-the-art in the field.
+Jingwei is an open-source testbed for evaluating methods for image tag assignment, tag refinement and tag-based image retrieval. It is developed as part of [our survey effort](http://www.micc.unifi.it/tagsurvey/), aiming to provide a timely reflection of the state-of-the-art in the field.
 
 
 ## Methods implemented ##
@@ -63,5 +63,5 @@ If you publish work that uses Jingwei, please cite our survey paper: Xirong Li, 
 
 ## Contact ##
 
-* Xirong Li, Renmin University of China (xirong@ruc.edu.cn)
-* Tiberio Uricchio, University of Florence (tiberio.uricchio@unifi.it)
+* [Xirong Li](http://li-xirong.github.io/), Renmin University of China (xirong@ruc.edu.cn)
+* [Tiberio Uricchio](http://www.micc.unifi.it/uricchio/), University of Florence (tiberio.uricchio@unifi.it)

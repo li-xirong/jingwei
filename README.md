@@ -26,7 +26,7 @@ RobustPCA     | tag + image   | transduction based | C + Matlab + Python | linux
 * [NLTK](http://www.nltk.org) and [nltk\_data](https://drive.google.com/file/d/0B89Vll9z5OVEQkN1cmlGVlB5RTA/view?usp=sharing) for [SemanticField](instance_based/dosemtagrel.py) and [RobustPCA](transduction_based/robustpca/robustpca.py).
 * [h5py](http://www.h5py.org) and [Numpy / Scipy](http://www.scipy.org) for MATLAB<->Python data exchange of [TagProp](model_based/tagprop/tagprop.py) and [RobustPCA](transduction_based/robustpca/robustpca.py).
 * We recommend [Anaconda](https://www.continuum.io/downloads) (Python 2.7), a free Python distribution which include NLTK, h5py, numpy, scipy, etc.
-* [web.py](http://webpy.org/) for [web demo](visualize/webdemo)
+* [web.py](http://webpy.org/) for [web demo](visualize)
 
 ## Training and Test Data ##
 

@@ -201,7 +201,12 @@ void compute_cosine_distance(const search_model *model, const DataType* query_pt
         }
         ptr += model->dim;
         //fprintf(stdout, "%d %f %f\n", i, dist, sqrt(dist));
-        dist_values[i] = 1. - (dist / (sqrt(norm_query) * sqrt(norm_ptr)));
+        if (norm_query < 1e-8 || norm_ptr < 1e-8) {
+            dist_values[i] = (norm_query < 1e-8 && norm_ptr < 1e-8) ? 0 : 1; // define a value for zero input
+         } else {
+            dist_values[i] = 1. - (dist / (sqrt(norm_query) * sqrt(norm_ptr)));
+         }
+         //dist_values[i] = 1. - (dist / (sqrt(norm_query) * sqrt(norm_ptr)));
     }
 }
 

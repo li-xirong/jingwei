@@ -1,3 +1,15 @@
+## Downloads ##
+
+|          | Train10k | Train100k | Train1M | MIRFlickr | Flickr51 | NUS-WIDE |
+| :---    | ---: |  ---: | ---: | ---: | ---: | ---: | 
+| # images | 10,000	| 100,000	| 1,198,818	| 25,000	| 81,541	| 259,233 |
+| # tags | - | - | - | 14	| 51	| 81 |
+| vggnet16-fc7relu | [link](http://lixirong.net/data/csur2016/train10k-vggnet16-fc7relu.tar.gz) |  [link](http://lixirong.net/data/csur2016/train100k-vggnet16-fc7relu.tar.gz) |  [link](http://lixirong.net/data/csur2016/train1m-vggnet16-fc7relu.tar.gz) | [link](http://lixirong.net/data/csur2016/mirflickr08-vggnet16-fc7relu.tar.gz) | [link](http://lixirong.net/data/csur2016/flickr51-vggnet16-fc7relu.tar.gz) | [link](http://lixirong.net/data/csur2016/flickr81-vggnet16-fc7relu.tar.gz) | 
+| social tags | [link](http://lixirong.net/data/csur2016/train10k-tag.tar.gz) | [link](http://lixirong.net/data/csur2016/train100k-tag.tar.gz) | [link](http://lixirong.net/data/csur2016/train1m-tag.tar.gz) | [link](http://lixirong.net/data/csur2016/mirflickr08-tag.tar.gz) | [link](http://lixirong.net/data/csur2016/flickr51-tag.tar.gz) | [link](http://lixirong.net/data/csur2016/flickr81-tag.tar.gz) |
+| tag frequency | [link](http://lixirong.net/data/csur2016/train10k-tagfreq.tar.gz) | [link](http://lixirong.net/data/csur2016/train100k-tagfreq.tar.gz) | [link](http://lixirong.net/data/csur2016/train1m-tagfreq.tar.gz) | - | - | - |
+| ground truth | - | - | - | [link](http://lixirong.net/data/csur2016/mirflickr08-anno.tar.gz) | [link](http://lixirong.net/data/csur2016/flickr51-anno.tar.gz) | [link](http://lixirong.net/data/csur2016/flickr81-anno.tar.gz) | 
+| Flickr image urls | - | - | [link](http://lixirong.net/data/csur2016/train1m-urls.txt.gz) | - | - | [link](http://dl.nextcenter.org/public/nuswide/NUS-WIDE-urls.rar) |
+
 
 ## Vocabulary ##
 

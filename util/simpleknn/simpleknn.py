@@ -50,7 +50,7 @@ class search_model(Structure):
                 libsearch.free_model(pointer(self))
 
     def load_ids(self, idfile):
-        self.ids = str.split(open(idfile).readline().strip())
+        self.ids = str.split(open(idfile).read().strip())
         assert(len(self.ids) == self.get_nr_images())
 
     def get_dim(self):
